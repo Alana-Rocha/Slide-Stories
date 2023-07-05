@@ -5,6 +5,7 @@ export default class Slide {
   time: number;
   index: number;
   slide: Element;
+
   constructor(
     container: Element,
     slides: Element[],
@@ -18,7 +19,7 @@ export default class Slide {
     this.index = 0;
     this.slide = this.slides[this.index];
 
-    this.show(this.index);
+    this.init();
   }
 
   hide(el: Element) {
@@ -30,5 +31,33 @@ export default class Slide {
     this.slide = this.slides[this.index];
     this.slides.forEach((el) => this.hide(el))
     this.slides[index].classList.add('active')
+  }
+
+  prev() {
+    const prev = this.index > 0 ? this.index -1 : this.slides.length -1;
+    this.show(prev)
+  }
+
+  next() {
+    const next = (this.index + 1) < this.slides.length ? this.index + 1 : 0;
+    this.show(next);
+  }
+
+  private addControl() {
+    const prevButton = document.createElement('button');
+    const nextButton = document.createElement('button');
+    prevButton.innerText = 'Slide Anterior';
+    nextButton.innerText = 'Slide Posterior';
+
+    this.controls.appendChild(prevButton);
+    this.controls.appendChild(nextButton);
+
+    nextButton.addEventListener('pointerup', () => this.next())
+    prevButton.addEventListener('pointerup', () => this.prev())
+  }
+
+  private init() {
+    this.addControl()
+    this.show(this.index);
   }
 }
