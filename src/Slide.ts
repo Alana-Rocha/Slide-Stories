@@ -34,7 +34,8 @@ export default class Slide {
   }
 
   prev() {
-    const prev = this.index > 0 ? this.index -1 : this.slides.length -1;
+    const prev = this.index > 0 ? this.index -1 : this.slides.length -1
+    
     this.show(prev)
   }
 
