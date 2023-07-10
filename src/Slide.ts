@@ -125,6 +125,7 @@ export default class Slide {
     this.controls.appendChild(thumbContainer);
     this.thumbItems = Array.from(document.querySelectorAll(".thumb-item"));
   }
+
   private init() {
     this.addControls();
     this.addThumbItems();
